@@ -355,11 +355,11 @@ namespace Uno.UI.DataBinding
 
 				System.ComponentModel.PropertyChangedEventHandler handler = (s, args) =>
 				{
-					if (args.PropertyName == propertyName)
+					if (args.PropertyName == propertyName || args.PropertyName == string.Empty)
 					{
 						if (typeof(BindingPath).Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
 						{
-							typeof(BindingPath).Log().Debug("Property changed for {0} on [{1}]".InvariantCultureFormat(propertyName, dataContextReference.Target?.GetType()));
+							typeof(BindingPath).Log().Debug($"Property changed for {propertyName} on [{dataContextReference.Target?.GetType()}]");
 						}
 
 						if (!newValueActionWeak.IsDisposed)
